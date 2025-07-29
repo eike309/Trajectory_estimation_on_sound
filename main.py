@@ -170,7 +170,7 @@ train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
 val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False)
 
 # initialize the model, loss criterion, and optimizer
-model = EncoderDecoder(in_channels=12, target_size=target_size).to(device)  # Move the model to the appropriate device
+model = EncoderDecoder(in_channels=12, target_size=target_size).to(device)  # move the model to the appropriate device
 criterion = nn.BCELoss()
 
 optimizer = optim.Adam(model.parameters(), lr=0.1)  # Starting learning rate of 0.001
@@ -181,11 +181,11 @@ scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0
 epoch_number = 100
 
 # Training Loop
-for epoch in range(epoch_number):  # Example: 200 epochs
+for epoch in range(epoch_number): 
     model.train()
     running_loss = 0.0
     for inputs, labels in train_loader:
-        inputs, labels = inputs.to(device), labels.to(device)  # Move inputs and labels to the device
+        inputs, labels = inputs.to(device), labels.to(device) 
         optimizer.zero_grad()
         outputs = model(inputs)
         loss = criterion(outputs, labels)
